@@ -1,6 +1,6 @@
+"use client"
 import React from "react";
 import { Button, Typography } from "@material-tailwind/react";
-import { BoltIcon, ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ interface IconPropsType {
   children: React.ReactNode;
 }
 
-interface FeatureSectionTwoProps {
+export interface FeatureSectionTwoProps {
   imageUrl: string;
   imageAlt: string;
   title: string;

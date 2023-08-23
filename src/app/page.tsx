@@ -3,43 +3,31 @@ import CardVRU from "@/components/Card";
 import { CardsGrid } from "@/components/CardGrid";
 import CardItem from "@/components/CardItem";
 import DefaultCarousel from "@/components/Carousel";
-import CarouselSlideImage, { CarouselSlideVideo } from "@/components/CarouselSlides";
+import CarouselSlide, { AssetType } from "@/components/CarouselSlides";
 import LogoSectionOne from "@/components/LogoSection";
 import { useEffect, useState } from "react";
 
-const slides = [
+const slidesData = [
   {
-    assetSrc: "/videos/VRU.mp4",    
+    type: AssetType.VIDEO,
+    assetSrc: "/videos/VRU.mp4",
     title: "EL BARRIO NECESITA RUGBY",
     description: "Y EL RUGBY NECESITA BARRIO",
-    mute:true,
-    loop:true,
-    buttons: [
-      {
-        text: "COLABORA",
-        color: "red",
-        variant: "filled",
-        url: "/",
-      },
-    ],
-  }
-  ,
+    mute: true,
+    loop: true,
+    buttons: [{ text: "COLABORA", color: "red", variant: "filled", url: "/" }],
+  },
   {
+    type: AssetType.IMAGE,
     assetSrc: "/images/femCampeonas.jpg",
     assetAlt: "image 1",
     title: "EL BARRIO NECESITA RUGBY",
     description: "Y EL RUGBY NECESITA BARRIO",
-    buttons: [
-      {
-        text: "COLABORA",
-        color: "red",
-        variant: "filled",
-        url: "/",
-      },
-    ],
-  }
+    buttons: [{ text: "COLABORA", color: "red", variant: "filled", url: "/" }],
+  },
 ];
-let contentsCard = [
+
+const cardContents = [
   {
     img: "/images/escuela.png",
     title: "¡Me quiero unir a la escuela de rugby!",
@@ -70,7 +58,7 @@ let contentsCard = [
   },
 ];
 
-const card = {
+const mainCardData = {
   imageSrc: "/images/elbarrio.JPG",
   category: "Personas Socias",
   title: "EMPUJA LA MELEE JUNTO AL VRU",
@@ -80,27 +68,21 @@ const card = {
   linkText: "QUIERO COLABORAR",
 };
 export default function Home() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   return (
     <main className="mx-auto">
-      {mounted && (
-        <DefaultCarousel>
-          <CarouselSlideVideo {...slides[0]}></CarouselSlideVideo>
-          <CarouselSlideImage {...slides[1]}></CarouselSlideImage>
-        </DefaultCarousel>
-      )}
-      <LogoSectionOne></LogoSectionOne>
+      <DefaultCarousel>
+        {slidesData.map((slide, index) => (
+          <CarouselSlide key={index} {...slide} />
+        ))}
+      </DefaultCarousel>
 
-      <CardVRU {...card} />
-      <CardsGrid
-        title={"¡Inscríbete en una de nuestras secciones y únete al club!"}
-      >
-        {contentsCard.map((card) => (
-          <CardItem key={card.title}{...card}></CardItem>
+      <LogoSectionOne />
+      <CardVRU {...mainCardData} />
+      <CardsGrid title="¡Inscríbete en una de nuestras secciones y únete al club!">
+        {cardContents.map((card) => (
+          <CardItem key={card.title} {...card} />
         ))}
       </CardsGrid>
     </main>
   );
 }
-

@@ -23,8 +23,8 @@ import Image from "next/image";
   export default function CardVRU({imageSrc,imageAlt,category,title,description,link,linkText}:CardVRUProps) {
     return (
       <section className="container mx-auto px-8 py-20 text-center">
-          <Card className="flex-row w-full ">
-              <CardHeader shadow={false} floated={false} className="w-2/5 shrink-0 m-0 rounded-r-none">
+          <Card className="flex col lg:flex-row w-full ">
+              <CardHeader shadow={false} floated={false} className="w-full shrink-0 m-0 rounded-r-none lg:w-2/5">
                   <Image
                       src={imageSrc}
                       alt={imageAlt || "alt image"}

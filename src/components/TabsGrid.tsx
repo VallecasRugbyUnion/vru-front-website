@@ -1,3 +1,4 @@
+"use client"
 import { Tabs, TabsHeader, TabsBody, Tab } from "@material-tailwind/react";
 import { PropsWithChildren } from "react";
 import React from "react";
@@ -13,19 +14,10 @@ export function TabsCustomAnimation({
   value,
   children,
 }: PropsWithChildren<tabProps>) {
-  React.Children.forEach(children, (child) => {
-    if (React.isValidElement(child)) {
-      if (child.type !== TabItem) {
-        throw new Error(
-          "ParentComponent only accepts TabItems as its children."
-        );
-      }
-    }
-  });
   return (
     <section className="container mx-auto px-8 py-20 text-center">
-      <Tabs id={id} value={value}>
-        <TabsHeader>
+      <Tabs id={id} value={value} >
+        <TabsHeader className="flex-col md:flex-row">
           {React.Children.map(children, (child) => {
             if (React.isValidElement<TabItemProps>(child)) {
               return (

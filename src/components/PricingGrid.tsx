@@ -1,9 +1,10 @@
+"use client"
 import React from "react";
 import { Typography, Card } from "@material-tailwind/react";
 import PricingCard, { PricingCardPropsType } from "./PricingCard";
 
 
-interface PricingGridPropsType {
+export interface PricingGridPropsType {
   title: string;
   subTitle: string;
   description: string;
@@ -31,7 +32,7 @@ export function PricingGrid({title, subTitle,description,pricingCards}:PricingGr
         </div>
       </Card>
       <div className="-mt-32 px-8 pt-8 pb-16">
-        <div className="container mx-auto grid gap-10 md:grid-cols-2 lg:grid-cols-2">
+        <div className={`container mx-auto grid gap-10 md:grid-cols-${pricingCards.length} lg:grid-cols-${pricingCards.length}`}>
           {pricingCards?.map((props, key) => (
             <PricingCard key={key} {...props} />
           ))}

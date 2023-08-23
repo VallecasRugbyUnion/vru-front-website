@@ -2,11 +2,8 @@
 import React from "react";
 import {
   Navbar,
-  MobileNav,
-  Typography,
   Button,
   IconButton,
-  Card,
   Menu,
   MenuHandler,
   MenuItem,
@@ -34,8 +31,7 @@ export function StickyNavbar() {
       subMenu: [
         { name: "Femenino", href: "/seniors/femenino" },
         { name: "Masculino", href: "/seniors/masculino" },
-        { name: "Touch", href: "/seniors/touch" },
-        { name: "Equipo de Madres", href: "/seniors/equipomadres" },
+        { name: "Touch", href: "/seniors/touch" },        
       ],
     },
     { name: "Personas Socias", href: "#" },
