@@ -23,7 +23,7 @@ export interface PricingCardPropsType {
           <Chip
             value={title}
             color="blue-gray"
-            className="mx-auto -mt-9 w-80 rounded-full !bg-blue-gray-50 pt-2 !text-blue-gray-900"
+            className="mx-auto -mt-9 w-auto rounded-full !bg-blue-gray-50 pt-2 !text-blue-gray-900"
           />
           <Typography
             variant="h1"

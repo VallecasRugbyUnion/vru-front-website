@@ -27,7 +27,7 @@ export default async function Page({
     headers: {
       "Content-Type": "application/json",
     },
-    next: { revalidate: 0 },
+    next: { revalidate: 3600 },
   });
 
   const data: SeniorPageInfo = await res.json();

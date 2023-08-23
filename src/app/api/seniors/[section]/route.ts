@@ -131,7 +131,7 @@ function getFemPrice() {
         description: "¡Ven y prueba nuestros entrenamientos sin ningún compromiso!",
         pricingCards: [
             {
-                title: "Promocion Femenina",
+                title: "Ficha Promocion",
                 price: ["€", "272"],
                 priceSubTitle: "Temporada Completa",
                 subTitle:
@@ -139,7 +139,7 @@ function getFemPrice() {
                 options: [],
             },
             {
-                title: "Senior Femenina",
+                title: "Ficha Senior",
                 price: ["€", "297"],
                 priceSubTitle: "Temporada Completa",
                 subTitle: "",
