@@ -1,12 +1,13 @@
 "use client";
 import DefaultCarousel from "@/components/Carousel";
-import CarouselSlideImage, { CarouselSlideVideo } from "@/components/CarouselSlides";
+import CarouselSlide, { AssetType } from "@/components/CarouselSlides";
 import LogoSectionOne from "@/components/LogoSection";
 import { useEffect, useState } from "react";
 
 
 const slides = [
   {
+    type: AssetType.VIDEO,
     assetSrc: "/videos/Socios.mp4",
     assetAlt: "image 1",
     title: "",
@@ -23,6 +24,7 @@ const slides = [
     ],
   },
   {
+    type: AssetType.IMAGE,
     assetSrc: "/images/femCampeonas.jpg",
     assetAlt: "image 1",
     title: "EL BARRIO NECESITA RUGBY",
@@ -50,8 +52,8 @@ export default function DashboardLayout({
     <section>
       {mounted && (
         <DefaultCarousel>
-          <CarouselSlideVideo {...slides[0]}></CarouselSlideVideo>
-          <CarouselSlideImage {...slides[1]}></CarouselSlideImage>
+          <CarouselSlide {...slides[0]}></CarouselSlide>
+          <CarouselSlide {...slides[1]}></CarouselSlide>
           
         </DefaultCarousel>
       )}
