@@ -1,4 +1,5 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server"
+
 
 
 function getValues(page?: string) {
@@ -26,12 +27,8 @@ function getValues(page?: string) {
 
 
 export async function GET(request: Request,
-    { params }: { params: { section: string } }) {
-    
-    
-
-    let result = getValues(params.section)
-    console.log(JSON.stringify(result))
+    { params }: { params: { section: string } }) {    
+    let result = getValues(params.section)    
     return NextResponse.json(result)
 }
 
@@ -41,12 +38,12 @@ function getFemSlides() {
         {
             type: "image",
             assetSrc: "/images/femenino/femCampeonas.jpg",
-            assetAlt: "image 1",
-            title: "EL BARRIO NECESITA RUGBY",
-            description: "Y EL RUGBY NECESITA BARRIO",
+            assetAlt: "Campeonas rugby femenino",
+            title: "SENIOR FEMENINO",
+            description: "Nuestras campeonas de segunda división ahora jugarán en primera, con un amplio equipo federado compitiendo también en la liga de desarrollo femenina.",
             buttons: [
                 {
-                    text: "COLABORA",
+                    text: "QUIERO APUNTARME",
                     color: "red",
                     variant: "filled",
                     url: "/",
@@ -63,13 +60,13 @@ function getMascSlides() {
             type: "image",
             assetSrc: "/images/masculino/_DSC0848.jpg",
             assetAlt: "image 1",
-            title: "",
-            description: "",
+            title: "SENIOR MASCULINO",
+            description: "Nuestro senior masculino cuenta con más de 70 jugadores federados y compiten en la Tercera y Segunda División regional con 2 equipos.",
             muted: false,
             loop: false,
             buttons: [
                 {
-                    text: "COLABORA",
+                    text: "QUIERO APUNTARME",
                     color: "red",
                     variant: "filled",
                     url: "/",
@@ -86,11 +83,11 @@ function getTouchSlides() {
             type: "image",
             assetSrc: "/images/touch/DSC_0074.jpg",
             assetAlt: "image 1",
-            title: "EL BARRIO NECESITA RUGBY",
-            description: "Y EL RUGBY NECESITA BARRIO",
+            title: "TOUCH",
+            description: "Contamos con un equipo mixto de este deporte emergente sin contacto y más de 20 fichas federadas.",
             buttons: [
                 {
-                    text: "COLABORA",
+                    text: "QUIERO APUNTARME",
                     color: "red",
                     variant: "filled",
                     url: "/",

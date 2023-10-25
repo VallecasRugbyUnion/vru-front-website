@@ -1,11 +1,11 @@
 "use client";
-import CardVRU from "@/components/Card";
-import { CardsGrid } from "@/components/CardGrid";
-import CardItem from "@/components/CardItem";
-import DefaultCarousel from "@/components/Carousel";
-import CarouselSlide, { AssetType } from "@/components/CarouselSlides";
-import LogoSectionOne from "@/components/LogoSection";
-import { useEffect, useState } from "react";
+import HorizontalCard from "@/components/Card/HorizontalCard";
+import { CardsGrid } from "@/components/Card/CardGrid";
+import VerticalCard from "@/components/Card/VerticalCard";
+import MainCarousel from "@/components/Carousel/MainCarousel";
+import CarouselSlide, { AssetType } from "@/components/Carousel/CarouselSlide";
+import LogoSection from "@/components/Miscellaneous/LogoSection";
+
 
 const slidesData = [
   {
@@ -19,7 +19,7 @@ const slidesData = [
   },
   {
     type: AssetType.IMAGE,
-    assetSrc: "/images/femCampeonas.jpg",
+    assetSrc: "/images/femenino/femCampeonas.jpg",
     assetAlt: "image 1",
     title: "EL BARRIO NECESITA RUGBY",
     description: "Y EL RUGBY NECESITA BARRIO",
@@ -70,17 +70,17 @@ const mainCardData = {
 export default function Home() {
   return (
     <main className="mx-auto">
-      <DefaultCarousel>
+      <MainCarousel>
         {slidesData.map((slide, index) => (
           <CarouselSlide key={index} {...slide} />
         ))}
-      </DefaultCarousel>
+      </MainCarousel>
 
-      <LogoSectionOne />
-      <CardVRU {...mainCardData} />
+      <LogoSection />
+      <HorizontalCard {...mainCardData} />
       <CardsGrid title="¡Inscríbete en una de nuestras secciones y únete al club!">
         {cardContents.map((card) => (
-          <CardItem key={card.title} {...card} />
+          <VerticalCard key={card.title} {...card} />
         ))}
       </CardsGrid>
     </main>

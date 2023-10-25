@@ -1,8 +1,10 @@
-import { StickyNavbar } from "@/components/DefaultNavbar";
+import { MainNavbar } from "@/components/Header/MainNavbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { FooterThree } from "@/components/Footer";
-import { Analytics } from '@vercel/analytics/react';
+import { Footer } from "@/components/Footer/Footer";
+import { Analytics } from "@vercel/analytics/react";
+import SessionProvider from "@/SessionProvider";
+import { CaptchaProvider } from "@/CaptchaProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,13 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-
-
       <body className={inter.className}>
-        <StickyNavbar></StickyNavbar>
-        {children}
-        <Analytics />
-        <FooterThree></FooterThree>
+        <SessionProvider>
+          <MainNavbar></MainNavbar>
+          {children}
+          <Analytics />
+          <Footer></Footer>
+        </SessionProvider>
       </body>
     </html>
   );

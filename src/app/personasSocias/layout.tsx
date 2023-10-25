@@ -1,7 +1,7 @@
 "use client";
-import DefaultCarousel from "@/components/Carousel";
-import CarouselSlide, { AssetType } from "@/components/CarouselSlides";
-import LogoSectionOne from "@/components/LogoSection";
+import MainCarousel from "@/components/Carousel/MainCarousel";
+import CarouselSlide, { AssetType } from "@/components/Carousel/CarouselSlide";
+import LogoSection from "@/components/Miscellaneous/LogoSection";
 import { useEffect, useState } from "react";
 
 
@@ -25,7 +25,7 @@ const slides = [
   },
   {
     type: AssetType.IMAGE,
-    assetSrc: "/images/femCampeonas.jpg",
+    assetSrc: "/images/femenino/femCampeonas.jpg",
     assetAlt: "image 1",
     title: "EL BARRIO NECESITA RUGBY",
     description: "Y EL RUGBY NECESITA BARRIO",
@@ -46,18 +46,11 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+
   return (
     <section>
-      {mounted && (
-        <DefaultCarousel>
-          <CarouselSlide {...slides[0]}></CarouselSlide>
-          <CarouselSlide {...slides[1]}></CarouselSlide>
-          
-        </DefaultCarousel>
-      )}
-      <LogoSectionOne></LogoSectionOne>
+
+
       {children}
     </section>
   );

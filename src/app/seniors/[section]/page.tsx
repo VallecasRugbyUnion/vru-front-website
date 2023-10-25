@@ -1,15 +1,15 @@
-import DefaultCarousel from "@/components/Carousel";
-import CarouselSlide, { CarouselSlideProps } from "@/components/CarouselSlides";
-import FeatureSectionTwo, {
-  FeatureSectionTwoProps,
-} from "@/components/FeatureSection2";
-import { PricingGrid, PricingGridPropsType } from "@/components/PricingGrid";
+import MainCarousel from "@/components/Carousel/MainCarousel";
+import CarouselSlide, { CarouselSlideProps } from "@/components/Carousel/CarouselSlide";
+import FeatureSection, {
+  FeatureSectionProps,
+} from "@/components/Miscellaneous/FeatureSection";
+import { PricingGrid, PricingGridPropsType } from "@/components/Pricing/PricingGrid";
 import { notFound } from "next/navigation";
 
 type SeniorPageInfo = {
   slides: CarouselSlideProps[];
   price: PricingGridPropsType;
-  generalInfo: FeatureSectionTwoProps;
+  generalInfo: FeatureSectionProps;
 };
 const sectionsAvailable = ["masculino", "femenino", "touch"];
 
@@ -27,18 +27,18 @@ export default async function Page({
     headers: {
       "Content-Type": "application/json",
     },
-    next: { revalidate: 3600 },
+    next: { revalidate: 0 },
   });
 
   const data: SeniorPageInfo = await res.json();
   return (
     <main className="mx-auto">
-      <DefaultCarousel>
+      <MainCarousel>
         {data.slides.map((slide, index) => (
           <CarouselSlide key={index} {...slide}></CarouselSlide>
         ))}
-      </DefaultCarousel>
-      <FeatureSectionTwo {...data.generalInfo} />
+      </MainCarousel>
+      <FeatureSection {...data.generalInfo} />
       <PricingGrid {...data.price} />
     </main>
   );
