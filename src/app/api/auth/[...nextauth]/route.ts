@@ -1,9 +1,7 @@
-
-import { signInWithEmailAndPassword } from "firebase/auth";
 import NextAuth from "next-auth/next";
 import type { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { auth } from "@/Firebase";
+import apiClient from '../../../lib/apiClient';  // Updated path to the apiClient.tsx file
 
 const authOptions: AuthOptions = {
     pages: {
@@ -13,27 +11,25 @@ const authOptions: AuthOptions = {
         CredentialsProvider({
             name: 'Credentials',
             credentials: {},
-            async authorize(credentials): Promise<any> {                
-                return await signInWithEmailAndPassword(auth, (credentials as any).email || '', (credentials as any).password || '')
-                    .then(userCredential => {                           
-                        if (userCredential.user) {
-                            if (!userCredential.user.emailVerified) {
-                                throw new Error('Please verify your email before signing in.');
-                            }
-                            return userCredential.user;
-                        }
-                        return null;
-                    })
-                    .catch(error => (console.log(error)))
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;                        
-                    });
+            async authorize(credentials:any): Promise<any> {
+                try {
+                    console.log("Credentials:", credentials);
+                    const user = await apiClient.login(credentials?.email, credentials?.password);
+                    console.log("User:", user);
+                    if (user && user.access) {
+                        return { ...user, email: credentials?.email };
+                    }
+
+                    throw new Error('Invalid credentials');
+                } catch (error) {
+                    console.error("Error during authentication:", error);
+                    throw new Error(String(error));
+                }
             }
         })
     ]
 }
 
-const handler = NextAuth(authOptions)
+const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };
