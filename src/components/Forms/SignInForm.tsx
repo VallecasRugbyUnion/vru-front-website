@@ -1,24 +1,43 @@
-"use client"
-import React, { useState } from "react";
-import { Typography, Input, Button } from "@material-tailwind/react";
-import { signIn } from "next-auth/react";
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import { Typography, Input, Button } from '@material-tailwind/react';
+import { signIn, useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 function SignInForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { data, status } = useSession();
 
-  const handleSignIn = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await signIn("credentials", {
+      await signIn('credentials', {
         email,
         password,
         redirect: true,
-        callbackUrl: "/",
+        callbackUrl: '/',
       });
     } catch (error) {
-      console.error("Error signing in:", error);
+      console.error('Error signing in:', error);
+      // TODO: Display a user-friendly error message.
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      console.log(`data pre login: ${data}`);
+      console.log(`status pre login: ${status}`);
+      await signIn('google', {
+        email,
+        password,
+        redirect: true,
+        callbackUrl: '/',
+      });
+      console.log(`data post login: ${data}`);
+      console.log(`status post login: ${status}`);
+    } catch (error) {
+      console.error('Error signing in:', error);
       // TODO: Display a user-friendly error message.
     }
   };
@@ -43,7 +62,7 @@ function SignInForm() {
               name="email"
               autoComplete="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -55,41 +74,26 @@ function SignInForm() {
               name="password"
               autoComplete="current-password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <Typography
-              as="a"
-              href="/forgot-password"
-              color="gray"
-              className="font-medium"
-            >
+            <Typography as="a" href="/forgot-password" color="gray" className="font-medium">
               ¿Has olvidado la contraseña?
             </Typography>
           </div>
-          <Button
-            color="gray"
-            size="lg"
-            className="mt-6"
-            fullWidth
-            type="submit"
-          >
+          <Button color="gray" size="lg" className="mt-6" fullWidth type="submit">
             Iniciar sesión
           </Button>
-          {/* TODO: Implement Google Sign-In */}
           <Button
             variant="outlined"
             color="gray"
             size="lg"
             className="mt-4 flex h-12 items-center justify-center gap-2"
             fullWidth
+            onClick={() => handleGoogleSignIn()}
           >
-            <img
-              src="/logos/logo-google.png"
-              alt="Iniciar sesión con Google"
-              className="-mt-0.5 h-7 w-7"
-            />
+            <img src="/logos/logo-google.png" alt="Iniciar sesión con Google" className="-mt-0.5 h-7 w-7" />
             Iniciar sesión con Google
           </Button>
         </form>

@@ -1,8 +1,8 @@
-"use client"
-import React from "react";
-import { Button, Typography } from "@material-tailwind/react";
-import Link from "next/link";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import { Button, Typography } from '@material-tailwind/react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface IconPropsType {
   children: React.ReactNode;
@@ -44,7 +44,7 @@ export function FeatureSection({
           <Typography variant="h4" className="mb-10 font-normal !text-gray-800">
             {subTitle}
           </Typography>
-          <ul className="flex list-disc list-inside flex-col gap-6 font-medium text-gray-800">
+          <ul className="flex list-inside list-disc flex-col gap-6 font-medium text-gray-800">
             {schedule.map((time, index) => (
               <li key={index}>{time}</li>
             ))}

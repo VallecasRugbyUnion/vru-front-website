@@ -1,6 +1,6 @@
-import { Card, CardBody, Typography, Button } from "@material-tailwind/react";
-import Image from "next/image";
-import Link from "next/link";
+import { Card, CardBody, Typography, Button } from '@material-tailwind/react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface VerticalCardPropsType {
   img: string;
@@ -10,18 +10,9 @@ interface VerticalCardPropsType {
   btnUrl?: string;
 }
 
-export default function VerticalCard({
-  img,
-  title,
-  desc,
-  btnTXT,
-  btnUrl,
-}: VerticalCardPropsType) {
+export default function VerticalCard({ img, title, desc, btnTXT, btnUrl }: VerticalCardPropsType) {
   return (
-    <Card
-      className="relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"
-      color="transparent"
-    >
+    <Card className="relative grid min-h-[30rem] items-end overflow-hidden rounded-xl" color="transparent">
       <Image
         src={img}
         alt={title}
@@ -34,14 +25,10 @@ export default function VerticalCard({
         <Typography variant="h4" color="white">
           {title}
         </Typography>
-        <Typography
-          variant="paragraph"
-          color="white"
-          className="my-2  font-normal text-center"
-        >
+        <Typography variant="paragraph" color="white" className="my-2  text-center font-normal">
           {desc}
         </Typography>
-        <Link href={btnUrl || "/"}>
+        <Link href={btnUrl || '/'}>
           <Button size="md" color="red">
             {btnTXT}
           </Button>

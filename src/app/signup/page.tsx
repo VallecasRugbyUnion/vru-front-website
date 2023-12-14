@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { CaptchaProvider } from "@/CaptchaProvider";
-import RegistrationForm from "@/components/Forms/RegistrationForm";
+import { CaptchaProvider } from '@/CaptchaProvider';
+import RegistrationForm from '@/components/Forms/RegistrationForm';
 
 export default function Signup() {
   return (

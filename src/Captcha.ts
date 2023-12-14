@@ -1,6 +1,4 @@
-"use server"
-
-
+'use server';
 
 export async function verifyCaptchaAction(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -14,7 +12,7 @@ export async function verifyCaptchaAction(token: string) {
     },
   });
 
-  const data = await response.json();  
+  const data = await response.json();
 
   if (data.score > 0.5) {
     return true;
