@@ -1,5 +1,5 @@
-import { CaptchaProvider } from "@/CaptchaProvider";
-import SignInForm from "@/components/Forms/SignInForm";
+import { CaptchaProvider } from '@/CaptchaProvider';
+import SignInForm from '@/components/Forms/SignInForm';
 
 export default function Signin() {
   return (

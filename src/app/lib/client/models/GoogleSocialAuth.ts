@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type TokenVerify = {
-    token: string;
+export type GoogleSocialAuth = {
+    auth_token: string;
 };
 

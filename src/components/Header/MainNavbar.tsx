@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 import {
   Navbar,
   Button,
@@ -11,105 +11,108 @@ import {
   Collapse,
   Typography,
   Avatar,
-} from "@material-tailwind/react";
-import Image from "next/image";
-import Link from "next/link";
+} from '@material-tailwind/react';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
-  CubeTransparentIcon,
   UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
-  RocketLaunchIcon,
-  Bars2Icon,
-} from "@heroicons/react/24/outline";
-import { signOut, useSession } from "next-auth/react";
+} from '@heroicons/react/24/outline';
+import { signOut, useSession } from 'next-auth/react';
+import { VruSession } from '@/global-types/credentials';
+
 const profileMenuItems = [
   {
-    label: "My Profile",
+    label: 'My Profile',
     icon: UserCircleIcon,
-    action: () => console.log("My Profile clicked"),
+    action: () => console.log('My Profile clicked'),
   },
   {
-    label: "Edit Profile",
+    label: 'Edit Profile',
     icon: Cog6ToothIcon,
-    action: () => console.log("Edit Profile clicked"),
+    action: () => console.log('Edit Profile clicked'),
   },
   {
-    label: "Inbox",
+    label: 'Inbox',
     icon: InboxArrowDownIcon,
-    action: () => console.log("Inbox clicked"),
+    action: () => console.log('Inbox clicked'),
   },
   {
-    label: "Help",
+    label: 'Help',
     icon: LifebuoyIcon,
-    action: () => console.log("Help clicked"),
+    action: () => console.log('Help clicked'),
   },
   {
-    label: "Sign Out",
+    label: 'Sign Out',
     icon: PowerIcon,
     action: () => {
-      console.log("Sign Out clicked");
+      console.log('Sign Out clicked');
       // assuming signOut is defined somewhere
-      signOut();
+      signOut()
+        .then(() => {
+          console.log('Signed out');
+        })
+        .catch(() => {
+          console.log('Error trying to sign out');
+        });
     },
   },
 ];
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const closeMenu = () => setIsMenuOpen(false);
+  const { data: session } = useSession();
+  const sessionCasted: VruSession = session as VruSession;
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
         <Button
+          placeholder="Placeholder"
           variant="text"
           color="blue-gray"
-          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+          className="flex items-center gap-1 rounded-full py-0.5 pl-0.5 pr-2 lg:ml-auto"
         >
           <Avatar
+            placeholder="Placeholder"
             variant="circular"
-            size="sm"
-            alt="tania andrew"
+            size="xl"
+            alt="Avatar"
             className="border border-gray-900 p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            src={sessionCasted?.user?.picture ? sessionCasted?.user?.picture : ''}
           />
           <ChevronDownIcon
             strokeWidth={2.5}
-            className={`h-3 w-3 transition-transform ${
-              isMenuOpen ? "rotate-180" : ""
-            }`}
+            className={`h-3 w-3 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`}
           />
         </Button>
       </MenuHandler>
-      <MenuList className="p-1">
+      <MenuList placeholder="Placeholder" className="p-1">
         {profileMenuItems.map(({ label, icon, action }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
+              placeholder="Placeholder"
               key={label}
               onClick={action}
               className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
+                isLastItem ? 'hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10' : ''
               }`}
             >
               {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
+                className: `h-4 w-4 ${isLastItem ? 'text-red-500' : ''}`,
                 strokeWidth: 2,
               })}
               <Typography
+                placeholder="Placeholder"
                 as="span"
                 variant="small"
                 className="font-normal"
-                color={isLastItem ? "red" : "inherit"}
+                color={isLastItem ? 'red' : 'inherit'}
               >
                 {label}
               </Typography>
@@ -123,57 +126,56 @@ function ProfileMenu() {
 
 export function MainNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
-  const { data: session, status } = useSession();
-
+  const { status } = useSession();
 
   React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
-    );
+    window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
   }, []);
 
   // Define the JSON array for navbar items
   const navbarItems = [
     {
-      name: "Seniors",
-      href: "#",
+      name: 'Seniors',
+      href: '#',
       subMenu: [
-        { name: "Femenino", href: "/seniors/femenino" },
-        { name: "Masculino", href: "/seniors/masculino" },
-        { name: "Touch", href: "/seniors/touch" },
+        { name: 'Femenino', href: '/seniors/femenino' },
+        { name: 'Masculino', href: '/seniors/masculino' },
+        { name: 'Touch', href: '/seniors/touch' },
       ],
     },
     {
-      name: "Personas Socias",
-      subMenu: [{ name: "Modalidades", href: "/personasSocias" }],
+      name: 'Personas Socias',
+      subMenu: [{ name: 'Modalidades', href: '/personasSocias' }],
     },
-    { name: "Escuela", href: "#" },
-    { name: "Proyecto", href: "#" },
+    { name: 'Escuela', href: '#' },
+    { name: 'Proyecto', href: '#' },
   ];
 
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      {navbarItems.map((item) => (
+      {navbarItems.map(item => (
         <Menu key={item.name}>
           <MenuHandler>
             <Button
+              placeholder="Placeholder"
               variant="text"
-              className="flex items-center gap-3 text-base font-normal capitalize tracking-normal"
+              className="text-base flex items-center gap-3 font-normal capitalize tracking-normal"
             >
               {item.name}
             </Button>
           </MenuHandler>
           {item.subMenu ? (
-            <MenuList>
-              {item.subMenu.map((subItem) => (
+            <MenuList placeholder="Placeholder">
+              {item.subMenu.map(subItem => (
                 <Link key={subItem.name} href={subItem.href}>
-                  <MenuItem key={subItem.name}>{subItem.name}</MenuItem>
+                  <MenuItem placeholder="Placeholder" key={subItem.name}>
+                    {subItem.name}
+                  </MenuItem>
                 </Link>
               ))}
             </MenuList>
           ) : (
-            ""
+            ''
           )}
         </Menu>
       ))}
@@ -181,19 +183,18 @@ export function MainNavbar() {
   );
 
   return (
-    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+    <Navbar
+      placeholder="Placeholder"
+      className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4"
+    >
       <div className="flex items-center justify-between text-blue-gray-900">
-        <Link href={"/"}>
-          <Image
-            src="/logos/logo_VRU_v3_Alta.png"
-            alt={"Logo VRU"}
-            width={80}
-            height={80}
-          ></Image>
+        <Link href={'/'}>
+          <Image src="/logos/logo_VRU_v3_Alta.png" alt={'Logo VRU'} width={80} height={80}></Image>
         </Link>
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>
           <IconButton
+            placeholder="Placeholder"
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             ripple={false}
@@ -208,11 +209,7 @@ export function MainNavbar() {
                 stroke="currentColor"
                 strokeWidth={2}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
               <svg
@@ -222,24 +219,20 @@ export function MainNavbar() {
                 stroke="currentColor"
                 strokeWidth={2}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </IconButton>
         </div>
-        {status === "unauthenticated" || status === "loading" ? (
+        {status === 'unauthenticated' || status === 'loading' ? (
           <div className="hidden gap-2 lg:flex">
             <Link href="/signin">
-              <Button variant="text" size="sm" color="blue-gray">
+              <Button placeholder="Placeholder" variant="text" size="sm" color="blue-gray">
                 Iniciar sesión
               </Button>
             </Link>
             <Link href="/signup">
-              <Button variant="gradient" size="sm">
+              <Button placeholder="Placeholder" variant="gradient" size="sm">
                 Registrarse
               </Button>
             </Link>
@@ -250,15 +243,15 @@ export function MainNavbar() {
       </div>
       <Collapse open={openNav}>
         {navList}
-        {status === "unauthenticated" || status === "loading" ? (
+        {status === 'unauthenticated' || status === 'loading' ? (
           <div className="flex-col gap-2 lg:flex">
-            <Link href={"/signin"}>
-              <Button variant="text" size="sm" color="blue-gray">
+            <Link href={'/signin'}>
+              <Button placeholder="Placeholder" variant="text" size="sm" color="blue-gray">
                 Iniciar sesión
               </Button>
             </Link>
-            <Link href={"/signup"}>
-              <Button variant="gradient" size="sm">
+            <Link href={'/signup'}>
+              <Button placeholder="Placeholder" variant="gradient" size="sm">
                 Registrarse
               </Button>
             </Link>

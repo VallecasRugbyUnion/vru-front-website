@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
-import { Carousel } from "@material-tailwind/react";
-import { PropsWithChildren } from "react";
-
+import { Carousel } from '@material-tailwind/react';
+import { PropsWithChildren } from 'react';
 
 interface DefaultCarouselProps {
   autoplay?: boolean;
   autoplayDelay?: number;
   loop?: boolean;
 }
-
 
 export default function MainCarousel({
   autoplay,
@@ -19,9 +17,10 @@ export default function MainCarousel({
 }: PropsWithChildren<DefaultCarouselProps>) {
   return (
     <Carousel
+      placeholder="Placeholder"
       autoplay={autoplay}
       autoplayDelay={autoplayDelay}
-      loop={loop}      
+      loop={loop}
       className="h-[40rem] w-screen"
     >
       {children}
