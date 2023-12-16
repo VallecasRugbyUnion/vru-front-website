@@ -11,29 +11,32 @@ interface TeamCardPropsType {
 function TeamCard({ img, name, title, desc }: TeamCardPropsType) {
   return (
     <Card
+      placeholder="Placeholder"
       color="transparent"
       shadow={false}
       className="grid place-items-center gap-4 md:grid-cols-1 lg:h-5/6 lg:grid-cols-12"
     >
-      <CardHeader floated={false} className="!m-0 h-full w-full lg:col-span-5">
+      <CardHeader placeholder="Placeholder" floated={false} className="!m-0 h-full w-full lg:col-span-5">
         <Image src={img} alt={name} className="h-full w-full object-cover object-top" width={800} height={600} />
       </CardHeader>
-      <CardBody className="p-0 lg:col-span-7">
-        <Typography variant="h5" color="blue-gray">
+      <CardBody placeholder="Placeholder" className="p-0 lg:col-span-7">
+        <Typography placeholder="Placeholder" variant="h5" color="blue-gray">
           {name}
         </Typography>
-        <Typography variant="small" className="mb-3 font-bold uppercase text-blue-gray-500">
+        <Typography placeholder="Placeholder" variant="small" className="mb-3 font-bold uppercase text-blue-gray-500">
           {title}
         </Typography>
-        <Typography className="mb-4 w-full font-normal !text-gray-500 xl:w-72">{desc}</Typography>
+        <Typography placeholder="Placeholder" className="mb-4 w-full font-normal !text-gray-500 xl:w-72">
+          {desc}
+        </Typography>
         <div className="flex items-center">
-          <IconButton variant="text" color="gray">
+          <IconButton placeholder="Placeholder" variant="text" color="gray">
             <i className="fa-brands fa-facebook text-lg not-italic" />
           </IconButton>
-          <IconButton variant="text" color="gray">
+          <IconButton placeholder="Placeholder" variant="text" color="gray">
             <i className="fa-brands fa-twitter text-lg not-italic" />
           </IconButton>
-          <IconButton variant="text" color="gray" className="text-gray-900">
+          <IconButton placeholder="Placeholder" variant="text" color="gray" className="text-gray-900">
             <i className="fa-brands fa-github text-lg not-italic" />
           </IconButton>
         </div>
@@ -42,6 +45,7 @@ function TeamCard({ img, name, title, desc }: TeamCardPropsType) {
   );
 }
 
+// TODO this should come from the backend
 const members = [
   {
     img: 'https://demos.creative-tim.com/material-kit-pro/assets/img/examples/studio-5.jpg',
@@ -68,10 +72,14 @@ export function TeamSectionFour() {
     <section className="px-8 py-8 lg:py-16">
       <div className="container mx-auto">
         <div className="mb-24 text-center">
-          <Typography variant="h2" color="blue-gray" className="mb-4">
+          <Typography placeholder="Placeholder" variant="h2" color="blue-gray" className="mb-4">
             The Executive Team
           </Typography>
-          <Typography variant="lead" className="mx-auto font-normal !text-gray-500 lg:w-8/12 lg:px-20">
+          <Typography
+            placeholder="Placeholder"
+            variant="lead"
+            className="mx-auto font-normal !text-gray-500 lg:w-8/12 lg:px-20"
+          >
             This is the paragraph where you can write more details about your team. Keep you user engaged by providing
             meaningful information.
           </Typography>

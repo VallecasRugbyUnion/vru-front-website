@@ -23,8 +23,13 @@ export default function HorizontalCard({
 }: HorizontalCardProps) {
   return (
     <section className="container mx-auto px-8 py-20 text-center">
-      <Card className="col flex w-full lg:flex-row ">
-        <CardHeader shadow={false} floated={false} className="m-0 w-full shrink-0 rounded-r-none lg:w-2/5">
+      <Card placeholder="Placeholder" className="col flex w-full lg:flex-row ">
+        <CardHeader
+          placeholder="Placeholder"
+          shadow={false}
+          floated={false}
+          className="m-0 w-full shrink-0 rounded-r-none lg:w-2/5"
+        >
           <Image
             src={imageSrc}
             alt={imageAlt || 'alt image'}
@@ -33,18 +38,18 @@ export default function HorizontalCard({
             height={400}
           />
         </CardHeader>
-        <CardBody>
-          <Typography variant="h6" color="red" className="mb-4 uppercase">
+        <CardBody placeholder="Placeholder">
+          <Typography placeholder="Placeholder" variant="h6" color="red" className="mb-4 uppercase">
             {category}
           </Typography>
-          <Typography variant="h4" color="blue-gray" className="mb-2">
+          <Typography placeholder="Placeholder" variant="h4" color="blue-gray" className="mb-2">
             {title}
           </Typography>
-          <Typography color="gray" className="mb-8 font-normal">
+          <Typography placeholder="Placeholder" color="gray" className="mb-8 font-normal">
             {description}
           </Typography>
           <a href={link} className="inline-block">
-            <Button variant="text" className="flex items-center gap-2">
+            <Button placeholder="Placeholder" variant="text" className="flex items-center gap-2">
               {linkText}
               <ArrowLongRightIcon strokeWidth={2} className="h-4 w-4" />
             </Button>

@@ -4,15 +4,13 @@ import { Typography, Input, Button } from '@material-tailwind/react';
 import Image from 'next/image';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { verifyCaptchaAction } from '@/Captcha';
-import { auth, dbFirestore } from '@/Firebase';
-import { useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordAgain, setPasswordAgain] = useState('');
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const { data: session, status } = useSession();
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,22 +21,30 @@ function RegistrationForm() {
     const token = await executeRecaptcha('onSubmit');
     // validate the token via the server action we've created previously
     const verified = await verifyCaptchaAction(token);
-    // TODO register with google
+    if (verified) {
+      await signIn('google', {
+        email,
+        password,
+        redirect: true,
+        callbackUrl: '/',
+      });
+    }
   };
 
   return (
     <section className="grid h-screen items-center lg:grid-cols-2">
       <div className="my-auto p-8 text-center sm:p-10 md:p-20 xl:px-32 xl:py-24">
-        <Typography variant="h3" color="blue-gray" className="mb-2">
+        <Typography placeholder="Placeholder" variant="h3" color="blue-gray" className="mb-2">
           Regístrate
         </Typography>
-        <Typography color="gray" className="mb-16">
+        <Typography placeholder="Placeholder" color="gray" className="mb-16">
           Es rápido y fácil
         </Typography>
 
         <form onSubmit={handleSignUp} className="mx-auto max-w-[24rem] text-left">
           <div className="mb-8">
             <Input
+              crossOrigin={true}
               color="gray"
               size="lg"
               label="Email"
@@ -51,6 +57,7 @@ function RegistrationForm() {
           </div>
           <div className="mb-4">
             <Input
+              crossOrigin={true}
               color="gray"
               size="lg"
               label="Contraseña"
@@ -63,6 +70,7 @@ function RegistrationForm() {
           </div>
           <div className="mb-4">
             <Input
+              crossOrigin={true}
               color="gray"
               size="lg"
               label="Repetir Contraseña"
@@ -74,11 +82,12 @@ function RegistrationForm() {
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <Typography as="a" href="/signin" color="gray" className="font-medium">
+            <Typography placeholder="Placeholder" as="a" href="/signin" color="gray" className="font-medium">
               ¿Ya tienes cuenta con el VRU?
             </Typography>
           </div>
           <Button
+            placeholder="Placeholder"
             disabled={!email || !password || !passwordAgain || password !== passwordAgain}
             color="gray"
             size="lg"

@@ -10,16 +10,17 @@ export function Footer() {
       <div className="container mx-auto">
         <div className="flex flex-wrap justify-center gap-8 md:justify-between">
           <div className="text-center md:text-left">
-            <Typography variant="h5" color="white" className="mb-4">
+            <Typography placeholder="Placeholder" variant="h5" color="white" className="mb-4">
               VALLECAS RUGBY UNION
             </Typography>
-            <Typography color="white" className="mb-12 font-normal">
+            <Typography placeholder="Placeholder" color="white" className="mb-12 font-normal">
               RUGBY DE BARRIO
             </Typography>
             <ul className="flex flex-wrap items-center justify-center md:justify-start">
               {links.map((link, idx) => (
                 <li key={link}>
                   <Typography
+                    placeholder="Placeholder"
                     as="a"
                     href="#"
                     color="white"
@@ -33,12 +34,13 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 border-t border-gray-700 py-7 md:justify-between">
-          <Typography color="white" className="text-center font-normal opacity-75">
+          <Typography placeholder="Placeholder" color="white" className="text-center font-normal opacity-75">
             &copy; {currentYear} Vallecas Rugby Union. Todos los derechos reservados.
           </Typography>
 
           <div className="flex gap-2">
             <Typography
+              placeholder="Placeholder"
               as="a"
               href="https://www.facebook.com/vallecasrugbyunion/?locale=es_ES"
               className="text-white transition-opacity hover:opacity-100"
@@ -52,6 +54,7 @@ export function Footer() {
               </svg>
             </Typography>
             <Typography
+              placeholder="Placeholder"
               as="a"
               href="https://www.instagram.com/vallecasrugbyunion/?hl=es"
               className="text-white transition-opacity hover:opacity-100"
@@ -65,6 +68,7 @@ export function Footer() {
               </svg>
             </Typography>
             <Typography
+              placeholder="Placeholder"
               as="a"
               href="https://twitter.com/vallecasru?lang=es"
               className="text-white transition-opacity hover:opacity-100"

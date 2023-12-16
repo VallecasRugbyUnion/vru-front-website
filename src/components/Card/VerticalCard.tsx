@@ -12,7 +12,11 @@ interface VerticalCardPropsType {
 
 export default function VerticalCard({ img, title, desc, btnTXT, btnUrl }: VerticalCardPropsType) {
   return (
-    <Card className="relative grid min-h-[30rem] items-end overflow-hidden rounded-xl" color="transparent">
+    <Card
+      placeholder="Placeholder"
+      className="relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"
+      color="transparent"
+    >
       <Image
         src={img}
         alt={title}
@@ -21,15 +25,20 @@ export default function VerticalCard({ img, title, desc, btnTXT, btnUrl }: Verti
         height={600}
       />
       <div className="absolute inset-0 bg-black/50" />
-      <CardBody className="relative flex flex-col justify-end text-center">
-        <Typography variant="h4" color="white">
+      <CardBody placeholder="Placeholder" className="relative flex flex-col justify-end text-center">
+        <Typography placeholder="Placeholder" variant="h4" color="white">
           {title}
         </Typography>
-        <Typography variant="paragraph" color="white" className="my-2  text-center font-normal">
+        <Typography
+          placeholder="Placeholder"
+          variant="paragraph"
+          color="white"
+          className="my-2  text-center font-normal"
+        >
           {desc}
         </Typography>
         <Link href={btnUrl || '/'}>
-          <Button size="md" color="red">
+          <Button placeholder="Placeholder" size="md" color="red">
             {btnTXT}
           </Button>
         </Link>

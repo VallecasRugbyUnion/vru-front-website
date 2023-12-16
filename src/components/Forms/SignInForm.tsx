@@ -1,13 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import { Typography, Input, Button } from '@material-tailwind/react';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 
 function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { data, status } = useSession();
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,16 +25,12 @@ function SignInForm() {
 
   const handleGoogleSignIn = async () => {
     try {
-      console.log(`data pre login: ${data}`);
-      console.log(`status pre login: ${status}`);
       await signIn('google', {
         email,
         password,
         redirect: true,
         callbackUrl: '/',
       });
-      console.log(`data post login: ${data}`);
-      console.log(`status post login: ${status}`);
     } catch (error) {
       console.error('Error signing in:', error);
       // TODO: Display a user-friendly error message.
@@ -45,16 +40,17 @@ function SignInForm() {
   return (
     <section className="grid h-screen items-center lg:grid-cols-2">
       <div className="my-auto p-8 text-center sm:p-10 md:p-20 xl:px-32 xl:py-24">
-        <Typography variant="h3" color="blue-gray" className="mb-2">
+        <Typography placeholder="Placeholder" variant="h3" color="blue-gray" className="mb-2">
           Iniciar sesión
         </Typography>
-        <Typography color="gray" className="mb-16">
+        <Typography placeholder="Placeholder" color="gray" className="mb-16">
           Ingresa tu correo electrónico y contraseña para iniciar sesión.
         </Typography>
 
         <form onSubmit={handleSignIn} className="mx-auto max-w-[24rem] text-left">
           <div className="mb-8">
             <Input
+              crossOrigin={true}
               color="gray"
               size="lg"
               label="Email"
@@ -67,6 +63,7 @@ function SignInForm() {
           </div>
           <div className="mb-4">
             <Input
+              crossOrigin={true}
               color="gray"
               size="lg"
               label="Contraseña"
@@ -78,14 +75,15 @@ function SignInForm() {
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <Typography as="a" href="/forgot-password" color="gray" className="font-medium">
+            <Typography placeholder="Placeholder" as="a" href="/forgot-password" color="gray" className="font-medium">
               ¿Has olvidado la contraseña?
             </Typography>
           </div>
-          <Button color="gray" size="lg" className="mt-6" fullWidth type="submit">
+          <Button placeholder="Placeholder" color="gray" size="lg" className="mt-6" fullWidth type="submit">
             Iniciar sesión
           </Button>
           <Button
+            placeholder="Placeholder"
             variant="outlined"
             color="gray"
             size="lg"

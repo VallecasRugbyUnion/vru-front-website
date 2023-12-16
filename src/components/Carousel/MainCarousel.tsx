@@ -16,7 +16,13 @@ export default function MainCarousel({
   children,
 }: PropsWithChildren<DefaultCarouselProps>) {
   return (
-    <Carousel autoplay={autoplay} autoplayDelay={autoplayDelay} loop={loop} className="h-[40rem] w-screen">
+    <Carousel
+      placeholder="Placeholder"
+      autoplay={autoplay}
+      autoplayDelay={autoplayDelay}
+      loop={loop}
+      className="h-[40rem] w-screen"
+    >
       {children}
     </Carousel>
   );

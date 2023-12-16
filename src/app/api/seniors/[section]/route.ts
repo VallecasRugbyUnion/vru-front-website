@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 function getValues(page?: string) {
-  let result = { slides: {}, price: {}, generalInfo: {} };
+  const result = { slides: {}, price: {}, generalInfo: {} };
 
   if (page == 'femenino') {
     result.slides = getFemSlides();
@@ -21,7 +21,7 @@ function getValues(page?: string) {
 }
 
 export async function GET(request: Request, { params }: { params: { section: string } }) {
-  let result = getValues(params.section);
+  const result = getValues(params.section);
   return NextResponse.json(result);
 }
 

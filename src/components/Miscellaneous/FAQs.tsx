@@ -32,10 +32,10 @@ export function Faqs() {
     <section className="px-8 py-8 lg:py-20">
       <div className="container mx-auto">
         <div className="text-center">
-          <Typography variant="h1" color="blue-gray" className="mb-4">
+          <Typography placeholder="Placeholder" variant="h1" color="blue-gray" className="mb-4">
             Frequently asked questions
           </Typography>
-          <Typography variant="lead" className="mx-auto mb-24 w-3/5 !text-gray-500">
+          <Typography placeholder="Placeholder" variant="lead" className="mx-auto mb-24 w-3/5 !text-gray-500">
             A lot of people don`t appreciate the moment until it&apos;s passed. I`m not trying my hardest, and I`m not
             trying to do
           </Typography>
@@ -43,10 +43,12 @@ export function Faqs() {
 
         <div className="mx-auto lg:max-w-screen-lg lg:px-20">
           {faqs.map(({ title, desc }, key) => (
-            <Accordion key={key} open={open === key + 1} onClick={() => handleOpen(key + 1)}>
-              <AccordionHeader className="text-left text-gray-900">{title}</AccordionHeader>
+            <Accordion placeholder="Placeholder" key={key} open={open === key + 1} onClick={() => handleOpen(key + 1)}>
+              <AccordionHeader placeholder="Placeholder" className="text-left text-gray-900">
+                {title}
+              </AccordionHeader>
               <AccordionBody>
-                <Typography color="blue-gray" className="font-normal text-gray-500">
+                <Typography placeholder="Placeholder" color="blue-gray" className="font-normal text-gray-500">
                   {desc}
                 </Typography>
               </AccordionBody>

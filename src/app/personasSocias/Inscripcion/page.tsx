@@ -38,7 +38,7 @@ const infoProps = {
   btnLink: 'https://goo.gl/maps/JYCdviXyggiir3xP8',
 };
 
-export default function Page({ params }: { params: { section: string } }) {
+export default function Page() {
   return (
     <main className="mx-auto">
       <TabsGrid id="SeniorInfo" value="infoGeneral">
@@ -48,14 +48,6 @@ export default function Page({ params }: { params: { section: string } }) {
         <TabItem label="Cuota Jugadoras" value="cuota">
           <PricingGrid {...priceProps} />
         </TabItem>
-        {/*
-        <TabItem label="Staff del Senior Femenio" value="staffSenior">
-          <TeamSectionFour />
-        </TabItem>
-        <TabItem label="Acerca del Equipo" value="acercaDelEquipo">
-          <ContentSectionOne />
-        </TabItem>
-      */}
       </TabsGrid>
     </main>
   );

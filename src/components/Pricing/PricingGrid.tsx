@@ -14,17 +14,18 @@ export function PricingGrid({ title, subTitle, description, pricingCards }: Pric
   return (
     <section className="p-4">
       <Card
+        placeholder="Placeholder"
         shadow={false}
         className="via-light-gray-900 min-h-[50vh] rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 px-8 py-24"
       >
         <div className="container mx-auto text-center">
-          <Typography variant="h2" color="white" className="mb-4">
+          <Typography placeholder="Placeholder" variant="h2" color="white" className="mb-4">
             {title}
           </Typography>
-          <Typography variant="lead" color="white" className="mb-8 opacity-70">
+          <Typography placeholder="Placeholder" variant="lead" color="white" className="mb-8 opacity-70">
             {subTitle}
           </Typography>
-          <Typography variant="h3" color="white" className="mb-8 opacity-70">
+          <Typography placeholder="Placeholder" variant="h3" color="white" className="mb-8 opacity-70">
             {description}
           </Typography>
         </div>

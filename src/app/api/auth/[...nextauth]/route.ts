@@ -2,8 +2,7 @@ import NextAuth from 'next-auth/next';
 import type { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import apiClient from '../../../lib/apiClient';
-import { tokenData } from '@/app/lib/types';
+import {OpenAPI, TokenObtainPair, TokenService} from '@/app/lib/client';
 
 const authOptions: AuthOptions = {
   pages: {
@@ -17,13 +16,16 @@ const authOptions: AuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {},
-      async authorize(credentials): Promise<any> {
+      async authorize(credentials: TokenObtainPair): Promise<TokenObtainPair> {
         try {
-          const user = await apiClient.login(credentials?.email, credentials?.password);
+          const user: TokenObtainPair = await TokenService.tokenLoginCreate({
+            email: credentials.email,
+            password: credentials.password,
+          });
           if (user && user.access) {
-            return { ...user, email: credentials?.email };
+            OpenAPI.TOKEN = user.access;
+            return user;
           }
-
           throw new Error('Invalid credentials');
         } catch (error) {
           console.error('Error during authentication:', error);
@@ -36,11 +38,14 @@ const authOptions: AuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ account }) {
       if (account?.id_token) {
-        const tokenData: tokenData = await apiClient.googleLogin(account?.id_token);
-        account.access_token = tokenData.access;
-        account.refresh_token = tokenData.refresh;
+        // In this case, we are login through Google,
+        // so we have to set up the api token here
+        const tokenData: TokenObtainPair = await TokenService.tokenGoogleCreate({
+          auth_token: account?.id_token,
+        });
+        OpenAPI.TOKEN = tokenData.access;
       }
       return true;
     },

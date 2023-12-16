@@ -4,10 +4,6 @@ import { Button, Typography } from '@material-tailwind/react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-interface IconPropsType {
-  children: React.ReactNode;
-}
-
 export interface FeatureSectionProps {
   imageUrl: string;
   imageAlt: string;
@@ -38,10 +34,10 @@ export function FeatureSection({
           height={700}
         />
         <div className="grid w-full content-center items-center px-10 py-10 pl-10 md:px-16 md:py-16 md:pl-16">
-          <Typography variant="h2" color="blue-gray" className="mb-4">
+          <Typography placeholder="Placeholder" variant="h2" color="blue-gray" className="mb-4">
             {title}
           </Typography>
-          <Typography variant="h4" className="mb-10 font-normal !text-gray-800">
+          <Typography placeholder="Placeholder" variant="h4" className="mb-10 font-normal !text-gray-800">
             {subTitle}
           </Typography>
           <ul className="flex list-inside list-disc flex-col gap-6 font-medium text-gray-800">
@@ -50,7 +46,10 @@ export function FeatureSection({
             ))}
           </ul>
           <Link href={btnLink} rel="noopener noreferrer" target="_blank" className=" mt-9">
-            <Button color="red"> {btnText} </Button>
+            <Button placeholder="Placeholder" color="red">
+              {' '}
+              {btnText}{' '}
+            </Button>
           </Link>
         </div>
       </div>

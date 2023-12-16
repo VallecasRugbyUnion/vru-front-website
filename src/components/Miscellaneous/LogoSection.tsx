@@ -8,7 +8,7 @@ export function LogoSection() {
   return (
     <section className="px-8 py-8 lg:py-20">
       <div className="container mx-auto text-center">
-        <Typography variant="h4" color="blue-gray" className="mb-8">
+        <Typography placeholder="Placeholder" variant="h4" color="blue-gray" className="mb-8">
           Nuestros Patrocinadores
         </Typography>
         <div className="flex flex-wrap items-center justify-center gap-9">

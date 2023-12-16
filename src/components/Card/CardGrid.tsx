@@ -19,7 +19,7 @@ interface CardGridProps {
 export function CardsGrid({ title, children }: PropsWithChildren<CardGridProps>): JSX.Element {
   return (
     <section className="container mx-auto px-8 py-20 text-center">
-      <Typography variant="h2" color="blue-gray">
+      <Typography placeholder="Placeholder" variant="h2" color="blue-gray">
         {title}
       </Typography>
 
