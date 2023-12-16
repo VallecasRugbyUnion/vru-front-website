@@ -20,7 +20,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-    BASE: 'http://0.0.0.0:3141',
+    BASE: 'http://0.0.0.0:3141',  // TODO use env here
     VERSION: '0.0.0',
     WITH_CREDENTIALS: false,
     CREDENTIALS: 'include',
